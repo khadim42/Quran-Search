@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Quran Words</title>
+
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styling */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Results section styling */
+        .results-container {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        td span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<h1>Search for Quran Words</h1>
+
+<!-- Search Form -->
+<form action="/quran/search" method="get">
+    <input type="text" name="query" placeholder="Search Quran Words" value="${query}">
+    <button type="submit">Search</button>
+</form>
+
+<div class="results-container">
+    <h2>Search Results</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Aya</th>
+            <th>Sura</th>
+            <th>Position</th>
+            <th>Verse Key</th>
+            <th>Text</th>
+            <th>Simple</th>
+            <th>Translation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through each word object from the model -->
+        <tr th:each="word : ${words}">
+            <td th:text="${word.id}"></td>
+            <td th:text="${word.aya}"></td>
+            <td th:text="${word.sura}"></td>
+            <td th:text="${word.position}"></td>
+            <td th:text="${word.verseKey}"></td>
+            <td th:text="${word.text}"></td>
+            <td th:text="${word.simple}"></td>
+            <td th:text="${word.translation}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

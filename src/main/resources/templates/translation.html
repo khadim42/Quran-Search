@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Translation Search</title>
+</head>
+<body>
+<h1>Search Translations</h1>
+<form action="/quran/translation" method="get">
+    <input type="text" name="query" placeholder="Search Translation" value="${query}">
+    <button type="submit">Search</button>
+</form>
+
+<h2>Results</h2>
+<ul>
+    <li th:each="trans : ${translations}">
+        <span th:text="${trans.text}"></span>
+    </li>
+</ul>
+</body>
+</html>
